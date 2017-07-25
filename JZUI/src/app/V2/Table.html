@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>index</title>
+    @@include('../inc/head.inc')
+	@@include('head.inc')
+
+
+  </head>
+  <body>
+	  <div id="page-wrapper"> 
+		<h6>JZ.Table</h6>
+		<div class="panel panel-default">
+	     	<div class="panel-heading"><b>功能示例页面(Examples)</b></div> 
+	        <div class="panel-body">
+	        		<a class="btn btn-primary btn-xs" href="Tabs.html">选项卡表格(切换筛选条件)</a>
+	        		<a class="btn btn-primary btn-xs" href="Search.html">查询(数据对象传递演示)</a>
+	        </div>
+	    </div>
+		<div class="panel panel-default">
+	     	<div class="panel-heading"><b>表格</b></div> 
+	        <div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6 col-xs-12">  
+			        	<div class="table-responsive">
+			        	 <table width="100%" class="table table-striped table-bordered table-hover" id="vue-table1">
+					         <thead>
+					             <tr> 
+					              <th>序号</th>  
+					              <th>标题</th>
+					              <th>浏览</th>
+					              <th>状态</th>
+					              <th>提交时间</th>
+					             </tr>
+					         </thead> 
+					         <tbody>
+								<tr v-for="item in UserList1">
+									<td>{{item.vueIndex}}</td>
+									<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
+									<td>{{ item.clicks }}</td>
+									<td>{{ false | switch_1}}</td>
+									<td>{{ item.recorddate }}</td>
+								</tr>
+							</tbody>
+					     </table> 
+				     </div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+
+<script pre> 
+//表格(无分页)
+var table1 = JZ.Table({
+	data:'UserList1',
+	url:JZ.AjaxUrl.DemoPageData.urlRandom(),
+	el_data:'#vue-table1',
+	limit:5,//数据行数，不传则为所有
+});
+</script> 
+					</div>
+				</div>
+			</div>		  
+	  </div>
+	 	<div class="panel panel-default">
+        <div class="panel-heading"><b>分页</b>
+        <button type="button" class="btn btn-primary btn-xs" onclick='table2.reload()'>重新载入(返回第一页)</button>
+        <button type="button" class="btn btn-primary btn-xs" onclick='table2.refresh()'>刷新 </button>
+        
+        </div>
+        <div class="panel-body">
+        	<div class="row">
+					  <div class="col-sm-6 col-sm-12">  
+			        	<div class="table-responsive">
+			        	 <table width="100%" class="table table-striped table-bordered table-hover" id="vue-table2">
+			                 <thead>
+			                     <tr>
+			                      <th>序号</th>
+			                      <th style="min-width:100px;">操作</th> 
+			                      <th>标题</th>
+			                      <th>浏览</th>
+			                      <th>状态</th>
+			                      <th>提交时间</th>
+			                     </tr>
+			                 </thead>
+			                 <tbody>
+												<tr v-for="item in UserList2">    
+													<td>{{item.vueIndex}}</td>
+													<td>
+														<button type="button" class="btn btn-primary btn-xs" v-on:click="detail(item,$event)">修改</button>
+														<button type="button" class="btn btn-warning btn-xs" v-on:click="del(item,$event)">删除</button>
+													</td>
+													<td>{{ item.name }}</td>
+													<td>{{ item.clicks }}</td> 
+													<td>{{ false | switch_1}}</td>
+													<td>{{ item.recorddate }}</td>
+												</tr>
+											</tbody>
+			             </table>
+			             </div>
+			        <ul id="vue-pager2" class="pagination pull-right"></ul>
+				  </div>
+					<div class="col-sm-6 col-xs-12">
+
+<script pre>
+var table2 = JZ.Table({
+	data:'UserList2',
+	url:JZ.AjaxUrl.DemoPageData.urlRandom(), 
+	el_data:'#vue-table2',
+	el_pager:'#vue-pager2',
+	limit:5,//每页条数
+	filter:function(){//添加 Vue Filter
+		Vue.filter('switch_1', function () {
+			if(this.item.isvalid==0) return '禁用';
+			return '启用';
+		});
+	},
+	methods:{
+	  del:function(item,event){//item:数据对象
+		    var _this = $(event.target);//点击的dom对象 
+		    alert('我要删除；当前行主键:'+item.id);
+	  },
+	  detail:function(item,event){ 
+		    alert('我要查看详情');
+	  }
+	}
+});
+</script>
+					</div> 
+				</div>
+			</div>		  
+	  </div>
+		<div class="panel panel-default">
+        <div class="panel-heading"><b>可拖拽列</b></div>
+	      <div class="panel-body">
+	        	<div class="row">  
+						<div class="col-sm-6 col-xs-12">  
+			        <div class="table-responsive">
+			        	<table width="100%" class="table table-striped table-bordered table-hover" id="vue-table3">
+	                    <thead>
+	                         <tr>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                          <th>序号</th>  
+	                          <th>标题</th>
+	                          <th>浏览</th>
+	                          <th>状态</th>
+	                          <th>提交时间</th>
+	                         </tr>
+	                     </thead>
+	                     <tbody>
+											<tr v-for="item in UserList3">
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>		
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>			
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>			
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>		
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>		
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>			
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>			
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>		
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>		
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>			
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>			
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>				
+											</tr>
+										</tbody>
+		              </table>
+		         </div>
+		          <ul id="vue-pager3" class="pagination pull-right"></ul>
+						</div>
+						<div class="col-sm-6 col-xs-12">
+<script pre>
+//表格(可拖拽列)
+var table3 = JZ.Table({
+	data:'UserList3',
+	url:JZ.AjaxUrl.DemoPageData.urlRandom(),
+	el_data:'#vue-table3',
+	el_pager:'#vue-pager3',
+	limit:5,//每页条数
+	pageNum:1,
+	resizable:true,//可拖拽列 
+	singleLine:true,//禁止内容换行
+});
+
+</script>
+				</div>
+				</div>		  
+	  	</div>
+		</div>
+		<div class="panel panel-default">
+        <div class="panel-heading"><b>排序</b></div>
+	      <div class="panel-body">
+	        	<div class="row">  
+				<div class="col-sm-6 col-xs-12">  
+			        <div class="table-responsive">
+			        	<table width="100%" class="table table-striped table-bordered table-hover" id="vue-table4">
+	                    <thead>
+	                         <tr>
+			                      <th>序号</th>
+			                      <th sort="name">标题</th>
+			                      <th sort="clicks[number]">浏览</th>
+			                      <th sort="isvalid[number]">状态</th>
+			                      <th sort="recorddate">提交时间</th>
+	                         </tr>
+	                     </thead>
+	                     <tbody>
+											<tr v-for="item in UserList4">
+												<td>{{item.vueIndex}}</td>
+												<td>{{ item.name }}</td>
+												<td>{{ item.clicks }}</td>
+												<td>{{ false | switch_1}}</td>
+												<td>{{ item.recorddate }}</td>
+											</tr>
+										</tbody>
+		              </table>
+		            <ul id="vue-pager4" class="pagination pull-right"></ul>
+		          </div>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+<pre>
+//数值排序字段添加[number]
+&lt;th&gt;序号&lt;/th&gt;
+&lt;th sort="name"&gt;标题&lt;/th&gt;
+&lt;th sort="clicks[number]"&gt;浏览&lt;/th&gt;
+&lt;th sort="isvalid[number]"&gt;状态&lt;/th&gt;
+&lt;th sort="recorddate"&gt;提交时间&lt;/th&gt;
+</pre>
+		<script>
+		//表格(可拖拽列)
+		var table4 = JZ.Table({ 
+			data:'UserList4',
+			url:JZ.AjaxUrl.DemoPageData.urlRandom(),
+			el_data:'#vue-table4',
+			el_pager:'#vue-pager4',
+			limit:5,//每页条数
+			resizable:true,//可拖拽列 
+			singleLine:true,//单行显示单元格
+		});
+		</script>
+			</div>
+		</div>		  
+	</div>
+</div>
+@@include('foot.inc')
+		
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>index</title>
+    @@include('../inc/head.inc')
+		@@include('head.inc')
+  </head>
+  <body>
+	  <div id="page-wrapper"> 
+		<h6>Modal</h6>
+		<button class="btn btn-primary btn-sm" onclick="javascript:$('#modal').modal('show');">default(默认)</button>
+		<button class="btn btn-primary btn-sm" onclick="javascript:$('#modal-sm').modal('show');">modal-sm(小)</button>
+		<button class="btn btn-primary btn-sm" onclick="javascript:$('#modal-lg').modal('show');">modal-lg(大)</button>
+		<button class="btn btn-primary btn-sm" onclick="javascript:$('#modal-max').modal('show');">modal-max(极大)</button>
+		<button class="btn btn-primary btn-sm" onclick="javascript:$('#modal-full').modal('show');">modal-full(全屏)</button>
+		<br><br>
+		<button type="button" class="btn btn-warning btn-sm" id="mybutton">打开包含iframe网页的modal</button>
+			<br><br>  
+		<script>
+		//当前页面打开模态框
+		$('#mybutton').click(function(){
+			bootbox.dialog({
+				size:"large",//宽度   small:小，large:大，max：最大，full：全屏
+				url: "../../../dist/app/Modal/child.html",//modal包含的网页地址
+				id:'MyTestModal',//模态框id
+				styles:{minHeight:300},//设置modal样式 
+				closeButton: true 
+			}); 
+		}); 
+		</script>
+		子页面中如何关闭模态框?
+		<code><pre>JZ.Modal.CloseParent('MyTestModal');</pre></code>
+		子页面中如何调用父页面方法?
+		<code><pre>parent.window.myParentFunction();</pre></code>
+
+		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">标题</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form"  method="post">
+							<div class="row">
+								<div class="form-group col-sm-6 col-xs-12">
+									<div class="input-group">
+										<div class="input-group-addon">姓名</div>
+										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="form-group col-sm-6 col-xs-12">
+									<div class="input-group">
+										<div class="input-group-addon">姓名</div>
+										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-sm-6 col-xs-12">
+									<div class="input-group">
+										<div class="input-group-addon">姓名</div>
+										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="form-group col-sm-6 col-xs-12">
+									<div class="input-group">
+										<div class="input-group-addon">姓名</div>
+										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-sm-6 col-xs-12">
+									<label><input type="checkbox" class="flat-red" checked>选我</label>
+									<label><input type="checkbox" class="flat-red">选我</label>
+									<label><input type="checkbox" class="flat-red" disabled>我被禁用</label>
+								</div>
+								<div class="form-group col-sm-6 col-xs-12">
+									<label><input type="radio" name="r3" class="flat-red" checked>选我</label>
+									<label><input type="radio" name="r3" class="flat-red">选我</label>
+									<label><input type="radio" name="r3" class="flat-red" disabled>我被禁用</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-sm-6 col-xs-12">
+									<div class="input-group">
+										<div class="input-group-addon">开始时间</div>
+										<input class="Wdate-no-border form-control" readonly="readonly" name="beginCreateDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'%y-%M-%d'})" />
+									</div>
+								</div>
+								<div class="form-group col-sm-6 col-xs-12">
+									<div class="input-group">
+										<div class="input-group-addon">开始时间</div>
+										<input class="Wdate-no-border form-control" readonly="readonly" name="beginCreateDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'%y-%M-%d'})" />
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer"> 
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="modal-sm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">标题</h4>
+					</div>
+						<div class="modal-body">
+						</div>
+					<div class="modal-footer"> 
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">标题</h4>
+					</div>
+						<div class="modal-body">
+						</div>
+					<div class="modal-footer"> 
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="modal-max" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-max" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">标题</h4>
+					</div>
+						<div class="modal-body">
+						</div>
+					<div class="modal-footer"> 
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="modal-full" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog modal-full" role="document">
+		    <div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title">标题</h4>
+					</div>
+						<div class="modal-body">
+						</div>
+					<div class="modal-footer"> 
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-primary">提交</button>
+					</div>
+		    </div>
+		  </div>
+		</div>
+@@include('foot.inc')
+<script>
+
+	$(function(){
+		$('.selectpicker').selectpicker({
+			noneSelectedText : '请选择角色'
+		});
+	})
+	JZ.Form({ 
+		form:'#form',
+		url:'/mock/data.json',//TODO:更改为提交地址. 如：/user/addAction',
+		beginSubmit:function(_submit){
+			if(confirm('确认要提交吗?')){
+				return true;
+			}
+		},
+		success:function(data){
+			alert('已提交。');
+		},
+		error:function(data){
+			console.log(data);
+		}
+	});
+	</script>
+  </body>
+</html>
