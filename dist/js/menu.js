@@ -55,7 +55,7 @@ new Vue({
                        {
                            "leaf":true,
                            "parentId":1,
-                           "url":"http://localhost:3000/dist/app/V2/CRUD.html"
+                           "url":"../JZUI/dist/app/V2/CRUD.html"
                        },
                        "checked":false,
                        "children":[],
@@ -84,7 +84,7 @@ new Vue({
                            {
                                "leaf":true,
                                "parentId":1,
-                               "url":"http://localhost:3000/dist/app/V2/Vue.html"
+                               "url":"../JZUI/dist/app/V2/Vue.html"
                            },
                            "checked":false,
                            "children":[],
@@ -98,7 +98,7 @@ new Vue({
                            {
                                "leaf":true,
                                "parentId":1,
-                               "url":"http://localhost:3000/dist/app/V2/Form.html"
+                               "url":"../JZUI/dist/app/V2/Form.html"
                            },
                            "checked":false,
                            "children":[],
@@ -112,7 +112,7 @@ new Vue({
                            {
                                "leaf":true,
                                "parentId":1,
-                               "url":"http://localhost:3000/dist/app/V2/Modal.html"
+                               "url":"../JZUI/dist/app/V2/Modal.html"
                            },
                            "checked":false,
                            "children":[],
@@ -141,7 +141,7 @@ new Vue({
                            {
                                "leaf":true,
                                "parentId":1,
-                               "url":"http://localhost:3000/dist/app/V2/Vue.html"
+                               "url":"../JZUI/dist/app/V2/Vue.html"
                            },
                            "checked":false,
                            "children":[],
@@ -155,7 +155,7 @@ new Vue({
                            {
                                "leaf":true,
                                "parentId":1,
-                               "url":"http://localhost:3000/dist/app/V2/Form.html"
+                               "url":"../JZUI/dist/app/V2/Form.html"
                            },
                            "checked":false,
                            "children":[],
