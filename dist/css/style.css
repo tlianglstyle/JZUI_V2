@@ -103,11 +103,11 @@ nav.page-tabs .page-tabs-content {
 }
 
 .roll-right.J_tabRight {
-    right: 120px;
+    right: 60px;
 }
 
 .roll-right.btn-group {
-    right: 60px;
+    right: 0px;
     width: 60px;
     padding: 0;
     top: -1px;
@@ -3561,7 +3561,7 @@ body.rtls.top-navigation .footer.fixed {
 }
 
 .page-tabs a {
-    color: #999;
+    color: #666666;
     font-size: 12px;
     border-top: 2px solid #ffffff;
     position: relative;

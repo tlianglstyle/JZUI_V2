@@ -48,6 +48,10 @@
 .skin-black .main-header .navbar .navbar-right > li > a {
   border-right-width: 0;
 }
+.skin-black .main-header .navbar .navbar-custom-menu .navbar-nav > li > a.active,
+.skin-black .main-header .navbar .navbar-right > li > a.active {
+  color: #39a1bb;
+}
 .skin-black .main-header > .logo {
   background-color: #ffffff;
   color: #333333;
@@ -71,9 +75,6 @@
     width: auto;
     height: 70%;
   }
-}
-.skin-black .main-header li.user-header {
-  background-color: #222;
 }
 .skin-black .content-header {
   background: transparent;

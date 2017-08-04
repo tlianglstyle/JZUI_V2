@@ -1,177 +1,408 @@
+var tree_demoData = [
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":""
+        },
+        "checked":false,
+        "children":[
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/CRUD.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"增删改查模板"
+            }
+        ],
+        "iconCls":"news_manage",
+        "id":1,
+        "state":"closed",
+        "text":"例子"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":""
+        },
+        "checked":false,
+        "children":[
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Vue.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"表格"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Form.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"表单"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Modal.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"模态框"
+            }
+        ],
+        "iconCls":"news_manage",
+        "id":1,
+        "state":"closed",
+        "text":"参数"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":""
+        },
+        "checked":false,
+        "children":[
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Vue.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"表格"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Form.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"表单"
+            }
+        ],
+        "iconCls":"news_manage",
+        "id":1,
+        "state":"closed",
+        "text":"其他"
+    }
+];
+var tree_adminData = [
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/menu/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":1,
+        "state":"closed",
+        "text":"菜单管理"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/role/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":2,
+        "state":"closed",
+        "text":"角色管理"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/user/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":3,
+        "state":"closed",
+        "text":"用户管理"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/dictionary/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":4,
+        "state":"closed",
+        "text":"字典管理"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/houseMessage/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":5,
+        "state":"closed",
+        "text":"客户房屋地址管理"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/user/tab"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":6,
+        "state":"closed",
+        "text":"登录情况统计"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":""
+        },
+        "checked":false,
+        "children":[
+            {
+                "attributes":
+                {
+                    "leaf":false,
+                    "parentId":7,
+                    "url":"/commissioner/list?target=bootstrap"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"",
+                "id":17,
+                "state":"closed",
+                "text":"部门人员管理"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":false,
+                    "parentId":7,
+                    "url":"/shopkeeper/manager/list?target=bootstrap"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"",
+                "id":18,
+                "state":"closed",
+                "text":"客户经理管理"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":false,
+                    "parentId":7,
+                    "url":"/department/list?target=bootstrap"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"",
+                "id":19,
+                "state":"closed",
+                "text":"部门管理"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":false,
+                    "parentId":7,
+                    "url":"/shopkeeper/list?target=bootstrap"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"",
+                "id":20,
+                "state":"closed",
+                "text":"门店管理"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":false,
+                    "parentId":7,
+                    "url":"/shopkeeper/designer/list?target=bootstrap"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"",
+                "id":21,
+                "state":"closed",
+                "text":"设计师管理"
+            }
+        ],
+        "iconCls":"",
+        "id":7,
+        "state":"closed",
+        "text":"CMS人员管理"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/posen/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":22,
+        "state":"closed",
+        "text":"POS机信息"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
+            "url":"/sysUseLog/list"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"",
+        "id":23,
+        "state":"closed",
+        "text":"人员操作记录"
+    }
+];
+function SaveSysUseLog(menu_id,menu_name,button_name){
+    $.post(Ctx + '/sysUseLog/add',
+            {menu_id:menu_id,menu_name:menu_name.replace(/\s/g,''),button_name:button_name,}
+    );
+}
 var navTreeChild = Vue.extend({
-  name: 'nav-tree-child',
-  template:[
-  '<ul class="treeview-menu">',
-    '<li v-for="item in data">',
-    	'<a :href="item.attributes.url" class="J_menuItem">',
-            '<i class="fa  fa-angle-right"></i>{{ item.text }}',
-       '</a>',
-       '<nav-tree-child :data="item.children" :root="false"></nav-tree-child>',
-    '</li>',
-  '</ul>'].join(''),
-  props:{data:{}}
+    name: 'nav-tree-child',
+    template:[
+        '<ul class="treeview-menu">',
+        '<li v-for="item in data" class="treeview">',
+        '<a :href="item.attributes.url" :class="item.children.length==0?\'J_menuItem\':\'\'">',
+        '<i class="fa fa-genderless1"></i>{{ item.text }}',
+        '<template v-if="item.children.length>0">',
+        '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+        '</template>',
+        '</a>',
+        '<nav-tree-child :data="item.children" :root="false"></nav-tree-child>',
+        '</li>',
+        '</ul>'].join(''),
+    props:{data:{}}
 })
 var navTree = Vue.extend({
-  name: 'nav-tree',
-  template:[
-    '<li v-for="item in data" :class="item.children.length>0?\'treeview\':\'\'">',
+    name: 'nav-tree',
+    template:[
+        '<li v-for="item in data" :class="item.children.length>0?\'treeview\':\'\'">',
         '<template v-if="item.children.length>0">',
-            '<a href="#">',
-                '<i class="fa fa-dashboard"></i> <span>{{ item.text }}</span>',
-                '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
-            '</a>',
-            '<nav-tree-child :data="item.children"></nav-tree-child>',
+        '<a href="#">',
+        '<i class="fa fa-get-pocket" style="font-size:12px;"></i> <span>{{ item.text }}</span>',
+        '<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+        '</a>',
+        '<nav-tree-child :data="item.children"></nav-tree-child>',
         '</template>',
         '<template v-else>',
-            '<a :href="item.attributes.url" class="J_menuItem">',
-                '<i class="fa fa-dashboard"></i> <span>{{ item.text }}</span>',
-            '</a>',
-            '<nav-tree-child :data="item.children"></nav-tree-child>',
+        '<a :href="item.attributes.url" class="J_menuItem">',
+        '<i class="fa fa-get-pocket" style="font-size:12px;"> </i><span>{{ item.text }}</span>',
+        '</a>',
+        '<nav-tree-child :data="item.children"></nav-tree-child>',
         '</template>',
-    '</li>'].join(''),
-  props:{data:{}}
+        '</li>'].join(''),
+    props:{data:{}}
 })
 //注册个递归组件
 Vue.component('navTreeChild',navTreeChild)
 Vue.component('navTree',navTree)
 
-new Vue({
-  el:'body',
-  data:function(){
-    return {
-      data:{
-       tree:[
-           {
-           "attributes":
-           {
-               "leaf":false,
-               "parentId":0,
-               "url":""
-           },
-           "checked":false,
-           "children":[
-                   {
-                       "attributes":
-                       {
-                           "leaf":true,
-                           "parentId":1,
-                           "url":"../JZUI/dist/app/V2/CRUD.html"
-                       },
-                       "checked":false,
-                       "children":[],
-                       "iconCls":"news_list",
-                       "id":3,
-                       "state":"open",
-                       "text":"增删改查模板"
-                   }
-               ],
-               "iconCls":"news_manage",
-               "id":1,
-               "state":"closed",
-               "text":"例子"
-               },
-               {
-                   "attributes":
-                   {
-                       "leaf":false,
-                       "parentId":0,
-                       "url":""
-                   },
-                   "checked":false,
-                   "children":[
-                       {
-                           "attributes":
-                           {
-                               "leaf":true,
-                               "parentId":1,
-                               "url":"../JZUI/dist/app/V2/Vue.html"
-                           },
-                           "checked":false,
-                           "children":[],
-                           "iconCls":"news_list",
-                           "id":3,
-                           "state":"open",
-                           "text":"表格"
-                       },
-                       {
-                           "attributes":
-                           {
-                               "leaf":true,
-                               "parentId":1,
-                               "url":"../JZUI/dist/app/V2/Form.html"
-                           },
-                           "checked":false,
-                           "children":[],
-                           "iconCls":"news_list",
-                           "id":3,
-                           "state":"open",
-                           "text":"表单"
-                       },
-                       {
-                           "attributes":
-                           {
-                               "leaf":true,
-                               "parentId":1,
-                               "url":"../JZUI/dist/app/V2/Modal.html"
-                           },
-                           "checked":false,
-                           "children":[],
-                           "iconCls":"news_list",
-                           "id":3,
-                           "state":"open",
-                           "text":"模态框"
-                       }
-                   ],
-                   "iconCls":"news_manage",
-                   "id":1,
-                   "state":"closed",
-                   "text":"参数"
-               },
-               {
-                   "attributes":
-                   {
-                       "leaf":false,
-                       "parentId":0,
-                       "url":""
-                   },
-                   "checked":false,
-                   "children":[
-                       {
-                           "attributes":
-                           {
-                               "leaf":true,
-                               "parentId":1,
-                               "url":"../JZUI/dist/app/V2/Vue.html"
-                           },
-                           "checked":false,
-                           "children":[],
-                           "iconCls":"news_list",
-                           "id":3,
-                           "state":"open",
-                           "text":"表格"
-                       },
-                       {
-                           "attributes":
-                           {
-                               "leaf":true,
-                               "parentId":1,
-                               "url":"../JZUI/dist/app/V2/Form.html"
-                           },
-                           "checked":false,
-                           "children":[],
-                           "iconCls":"news_list",
-                           "id":3,
-                           "state":"open",
-                           "text":"表单"
-                       }
-                   ],
-                   "iconCls":"news_manage",
-                   "id":1,
-                   "state":"closed",
-                   "text":""
-               }
-            ]
-      }
+vm = new Vue({
+    el:'body',
+    methods:{
+        selectProject:function(pId,event){
+            //color: #39a1bb;
+            if(event!=undefined){
+                var _this = $(event.target);//点击的dom对象 
+                _this.addClass('active').parent().siblings().children('a').removeClass('active');
+                //_this.transition({ scale: [0.5,0.5]},0).transition({ scale: [1,1]}, 400);
+            }
+            $('.sidebar-menu').css({'transform':'scale(0)','transition':'0s'});
+            setTimeout(function(){
+                menuBind();
+                $('.sidebar-menu').css({'transform':'scale(1)','transition':'0.2s'});
+            },50);
+        }
+    },
+    data:function(){
+        return {
+            data:{
+                tree:[
+                    
+                ],
+                notice:{
+                    count:0,
+                    data:[]
+                }
+            }
+        }
     }
-  }
-})
+});
+vm.data.tree = tree_demoData;
+vm.selectProject($('.navbar-custom-menu li:eq(0) a').data('id'));

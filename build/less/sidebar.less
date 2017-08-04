@@ -5,12 +5,12 @@
 // Main Sidebar
 .main-sidebar {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 0;
-  padding-top: 50px;
-  min-height: 100%;
+  height:80%;
+  overflow-x:hidden;overflow-y:auto;
   width: @sidebar-width;
-  z-index: 810;
+  z-index: 8100;
 
   // Using disposable variable to join statements with a comma
   @transition-rule: @transition-speed @transition-fn, width @transition-speed @transition-fn;
@@ -25,6 +25,8 @@
   }
 
   .sidebar-collapse & {
+    overflow: initial;
+    top: 0px;padding-top:50px;
     @media (min-width: @screen-sm) {
       .translate(-@sidebar-width, 0);
     }
@@ -32,6 +34,7 @@
 
   .sidebar-open & {
     @media (max-width: @screen-xs-max) {
+      padding-top:0px;
       .translate(0, 0);
     }
   }

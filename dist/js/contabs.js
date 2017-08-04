@@ -1,5 +1,3 @@
-
-$(function () {
     //计算元素集合的总宽度
     function calSumWidth(elements) {
         var width = 0;
@@ -98,12 +96,6 @@ $(function () {
         }
     }
 
-    //通过遍历给菜单项加上data-index属性
-    $(".J_menuItem").each(function (index) {
-        if (!$(this).attr('data-index')) {
-            $(this).attr('data-index', index);
-        }
-    });
 
     function menuItem(type,obj) {
         // 获取标识数据
@@ -162,10 +154,20 @@ $(function () {
         return false;
     }
     window.menuItem = menuItem;
-    $('.J_menuItem').on('click', function(){
-        menuItem(1,$(this));
-        return false;
-    });
+    menuBind();
+    //通过遍历给菜单项加上data-index属性
+    function menuBind(){
+        $(".J_menuItem").unbind('click').each(function (index) {
+            if (!$(this).attr('data-index')) {
+                $(this).attr('data-index', index);
+            }
+        });
+        $('.J_menuItem').on('click', function(){
+            $(this).transition({ scale: [0.6,0.6]},0).transition({ scale: [1,1]}, 400);
+            menuItem(1,$(this));
+            return false;
+        });
+    }
 
     // 关闭选项卡菜单
     function closeTab() {
@@ -323,4 +325,3 @@ $(function () {
         });
         $('.page-tabs-content').css("margin-left", "0");
     });
-});

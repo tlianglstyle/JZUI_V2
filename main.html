@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="local_modules/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -81,42 +82,42 @@ html,body{overflow-y: hidden;}
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li>
-            <a href="index.html">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                ERP
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                CMS
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                工程端
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                官网后台
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                供应链
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                设计师
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
                订单系统
             </a>
           </li>
           <li>
-            <a href="#">
+            <a data-id="1" v-on:click="selectProject(1,$event)" class="ani-click-scale">
               <i class="fa fa-th-large"></i>
                系统管理
             </a>
@@ -351,10 +352,10 @@ html,body{overflow-y: hidden;}
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat ani-click-scale">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat ani-click-scale">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -615,7 +616,6 @@ html,body{overflow-y: hidden;}
                         </li>
                     </ul>
                 </div>
-                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="jz_index.html" frameborder="0" data-id="jz_index.html" seamless></iframe>
@@ -834,6 +834,7 @@ html,body{overflow-y: hidden;}
 <!-- FastClick -->
 <script src="local_modules/fastclick/lib/fastclick.js"></script>
 <script src="JZUI/src/local_modules/vue/dist/vue.min.js"></script>
+<script src="JZUI/dist/js/app/JZ/JZ.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script src="dist/js/contabs.js"></script>

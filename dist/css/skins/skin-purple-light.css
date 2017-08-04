@@ -62,7 +62,7 @@
   background-color: #f9fafc;
 }
 .skin-purple-light .main-sidebar {
-  border-right: 1px solid #d2d6de;
+  border-right: 1px solid #dfdfdf;
 }
 .skin-purple-light .user-panel > .info,
 .skin-purple-light .user-panel > .info > a {
@@ -113,7 +113,7 @@
 }
 .skin-purple-light .sidebar-form {
   border-radius: 3px;
-  border: 1px solid #d2d6de;
+  border: 1px solid #dfdfdf;
   margin: 10px 10px;
 }
 .skin-purple-light .sidebar-form input[type="text"],
@@ -147,6 +147,6 @@
 }
 @media (min-width: 768px) {
   .skin-purple-light.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
-    border-left: 1px solid #d2d6de;
+    border-left: 1px solid #dfdfdf;
   }
 }
