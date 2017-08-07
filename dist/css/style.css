@@ -88,7 +88,7 @@ nav.page-tabs .page-tabs-content {
     border-right: solid 1px #eee;
     padding: 0 20px;
     min-width: 120px;
-    text-align: -webkit-center;
+    text-align: center;
 }
 
 .page-tabs a i:hover {
