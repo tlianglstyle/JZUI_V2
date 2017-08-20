@@ -80,14 +80,17 @@ var TableGolbal = function(opts){
 	};
 	obj.setUrl= function(url){obj.url=url}; 
 	obj.data;
-	obj.reload = function(){ 
+	obj.reload = function(){
 		var _object = obj;
+		//reload通常伴随着请求更改，此处作分页重绘 
+		_object.loadPage = false;
+		_object.requestData(); return;
 		if(!_object.loadPage){//手动载入
 			_object.requestData();
 		}else{
 			_object.pageNum = 1;
 			//reload通常伴随着请求更改，此处作分页重绘 
-			//_object.loadPage = false;
+			_object.loadPage = false;
 			_object.requestData(); 
 		}
 	};

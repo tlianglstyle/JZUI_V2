@@ -105,7 +105,7 @@ var scriptclone = require('./gulp_plugin/through-script-clone');
 gulp.task('scriptclone', ['fileinclude'], function(done) {
     gulp.src(['dist/app/*/*.html'])
     //gulp.src(['dist/app/Table/Table.html']) 
-        .pipe(scriptclone())
+        //.pipe(scriptclone())
         .pipe(gulp.dest('dist/app'))
         .on('end', done);
 });
