@@ -1,4 +1,5 @@
 var Config = require('./Config');
+var Utils = require('./Utils');
 var Ajax = require('./Ajax');
 var Pages = require('./Pages');
 var TableResizable = require('./Table.Resizable');
@@ -28,13 +29,14 @@ var TableGolbal = function(opts){
 			page:true,		//(分页)(不需)是否分页
 			resizable:false,//可拖拽列
 			singleLine:false,//单行显示单元格
+			editColumnsVersion:null,//{version:1},
 			onRequestData:function(){},
 			callback:function(){},//渲染后执行
 			onRenderData:function(){}//渲染前执行
 	}; 
 	$.extend(settings,opts);
 	
-	console.log(settings);
+	//console.log(settings);
 	if(settings.resizable){
 		if(!TableResizable.isLoad())
 			TableResizable.Load();//此处resizable暂时没有用到
@@ -287,13 +289,153 @@ var VueInit = function(opts){
 	//添加配置出口
 	var _tables = new Object();
 	for(var k in settings.tables){
+		//表格标识，用于同页面多表格的列编辑、列排序
+		settings.tables[k].tableName = k;
 		_tables[k] = TableConfig(settings.tables[k]);
 	}
-	//添加全选功能
+	//初始化列设置工具栏
+	function columnsTool(obj,indexArray){
+		var table = obj.el_data;
+		var thead = table.find('thead tr');
+		var ths = thead.children('th');
+		var btn = $('body').find('[data-editColumns=' + obj.data + ']');
+		var html='<div class="list-group" style="max-width:'+($(window).width()-100)+'px"><div>';
+		//没有自行设置
+		if(indexArray == null){
+			for(var i=0;i<ths.length;i++){
+				html+='<div class="list-group-item active"><input checked="checked" type="checkbox" data-index="'+i+'" />'+ths.eq(i).text()+'</div>';
+			}
+		}else{
+			//有自行设置，按照规则排序列出
+			for(var i=0;i<indexArray.length;i++){
+				html+='<div class="list-group-item active"><input checked="checked" type="checkbox" data-index="'+indexArray[i]+'" />'+ths.eq(indexArray[i]).text()+'</div>';
+			}
+			//未展示的列
+			for(var i=0;i<ths.length;i++){
+				if(indexArray.indexOf(i) < 0){
+					html+='<div class="list-group-item"><input type="checkbox" data-index="'+i+'" />'+ths.eq(i).text()+'</div>';
+				}
+			}
+		}
+		html+=`</div>
+		<p>Tips:勾选要显示的列，左右拖动列名可排序。
+		<button type="button" class="btn btn-primary btn-xs">保存</button>
+		<button type="button" class="btn btn-default btn-xs">取消</button>
+		</p>
+		</div>`;
+		var flag_close = true;
+		var selectColumns = $(html);
+		var btn_submit = selectColumns.find('.btn-primary');
+		var btn_cancel = selectColumns.find('.btn-default');
+		selectColumns.find('input').change(function(){
+			$(this).parent().toggleClass('active');
+		});
+		Sortable.create(selectColumns.children('div')[0], {animation: 150});
+		btn.append(selectColumns);
+		var fun_start = function(){
+			flag_close = false;
+			selectColumns.addClass('active');
+			table.css({opacity:0.1,disable:true});
+		}
+		var fun_end = function(){
+			flag_close = true;
+			table.css({opacity:1,disable:false});
+			selectColumns.removeClass('active');
+		}
+		var fun_submit = function(){
+			var result = [];
+			selectColumns.find('input[type=checkbox]:checked').each(function(){
+				result.push($(this).data('index'));
+			});
+			indexArray = indexArray == null ? [] : indexArray;
+			if(result.toString() != indexArray.toString()){
+				var key = window.location.href + '#' + obj.tableName;
+				Utils.Cookie.set(key,obj.editColumnsVersion+'&'+result.join(','));
+				window.location.reload();
+				//if(confirm('设置已保存，需刷新页面生效，是否立即刷新?')){
+				//	window.location.reload();
+				//}else{
+				//	fun_end();
+				//}
+			}else{
+				fun_end();
+			}
+		}
+		var fun_close = function(e){
+			if(!flag_close){
+				if($(e.target).closest('[data-editColumns]').length === 0 || $(e.target).closest('[data-editColumns]') != btn){
+					fun_submit();
+				}
+			}
+		}
+		btn.click(function(e){
+			event.stopPropagation();
+			if(e.target != e.currentTarget) return;
+			if(selectColumns.hasClass('active')){
+				fun_end();
+			}else{
+				fun_start();
+			}
+			 
+		});
+		btn_submit.click(function(e){
+			event.stopPropagation();
+			fun_submit();
+		});
+		btn_cancel.click(function(e){
+			event.stopPropagation();
+			fun_end();
+		});
+		$('body').on('click',fun_close);
+
+	}
+	//按照规则设置列
+	function setColumns(obj,indexArray){
+		var table = obj.el_data;
+		var thead = table.find('thead tr');
+		var tbody = table.find('tr[v-for]');
+		var ths = thead.children('th');
+		var tds = tbody.children('td');
+		var new_thead = thead.clone().html('');
+		var new_tbody = tbody.clone().html('');
+		for(var i=0;i<indexArray.length;i++){
+			new_thead.append(ths.eq(indexArray[i]));
+			new_tbody.append(tds.eq(indexArray[i]));
+		}
+		
+		thead.after(new_thead);
+		tbody.after(new_tbody);
+		thead.remove();
+		tbody.remove();
+	}
+	//入口-检测列编辑和列排序功能
+	function checkColumns(obj){
+		//Fomart Example: 'http://www.jzjz.com/api#table7':'1&2,1,4'
+		var key = window.location.href + '#' + obj.tableName;
+		var cookie = Utils.Cookie.get(key);
+		if(cookie!=null&&cookie!=""){
+			var vls = cookie.split('&');
+			var version = vls[0];
+			var indexArray = vls[1].split(',');
+			//对比版本号
+			if(obj.editColumnsVersion == version){
+				columnsTool(obj,indexArray);//有设置 => 设置工具栏,按规则排列
+				setColumns(obj,indexArray);//有设置 => 重置表格内容
+			}else{
+				columnsTool(obj,null);//版本号被更新 => 设置工具栏,按原始排列
+			}
+		}else{
+			columnsTool(obj,null);//无设置 => 设置工具栏,按原始排列
+		}
+		
+	}
+	//初始化前的配置
 	for(var k in tableQueue){
 		(function(key){ 
 			var obj = tableQueue[key];
 			obj.el_data = $('body').find('tr[v-for$=' + obj.data + ']').closest('table');
+			if(obj.editColumnsVersion != null)
+				checkColumns(obj);
 			
 			if(obj.singleLine){
 				var setModuleContent = function (cells){

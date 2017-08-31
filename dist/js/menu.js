@@ -13,7 +13,7 @@ var tree_demoData = [
                 {
                     "leaf":true,
                     "parentId":1,
-                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/CRUD.html"
+                    "url":"JZUI/dist/app/V2/CRUD.html"
                 },
                 "checked":false,
                 "children":[],
@@ -42,7 +42,7 @@ var tree_demoData = [
                 {
                     "leaf":true,
                     "parentId":1,
-                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Vue.html"
+                    "url":"JZUI/dist/app/V2/Vue.html"
                 },
                 "checked":false,
                 "children":[],
@@ -56,7 +56,7 @@ var tree_demoData = [
                 {
                     "leaf":true,
                     "parentId":1,
-                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Form.html"
+                    "url":"JZUI/dist/app/V2/Form.html"
                 },
                 "checked":false,
                 "children":[],
@@ -70,7 +70,7 @@ var tree_demoData = [
                 {
                     "leaf":true,
                     "parentId":1,
-                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Modal.html"
+                    "url":"JZUI/dist/app/V2/Modal.html"
                 },
                 "checked":false,
                 "children":[],
@@ -99,7 +99,7 @@ var tree_demoData = [
                 {
                     "leaf":true,
                     "parentId":1,
-                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Vue.html"
+                    "url":"JZUI/dist/app/Vue/index.html"
                 },
                 "checked":false,
                 "children":[],
@@ -113,7 +113,7 @@ var tree_demoData = [
                 {
                     "leaf":true,
                     "parentId":1,
-                    "url":"https://tlianglstyle.github.io/JZUI_V2/JZUI/dist/app/V2/Form.html"
+                    "url":"JZUI/dist/app/Table/Table.html"
                 },
                 "checked":false,
                 "children":[],
