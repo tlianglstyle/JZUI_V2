@@ -1322,6 +1322,11 @@ a:focus {
   background-color: #f7f7f7;
   font-size: 12px;
 }
+.input-group select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 /* button groups */
 .icheck > label {
   padding-left: 0;

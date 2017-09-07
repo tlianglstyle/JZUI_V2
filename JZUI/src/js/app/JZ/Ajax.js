@@ -40,7 +40,6 @@ exports.Ajax = function(opts){
 		  jsonp: settings.jsonp,
 		  data : settings.data, 
 		  success : function(data){
-		  	//console.log(data);
 		  	if(settings.loading)
 			  $('.ajax-load').remove();
 			delete requestQueue[opts.url]; 
@@ -52,17 +51,20 @@ exports.Ajax = function(opts){
 				if(typeof data =="string"){
 					data = eval('('+data+')');
 				}
-				if(data.rs==1){
-					settings.success(data.data);
+				if(data.code == "0"){
+					settings.success(data);
 				}else{
-					if(settings.error) settings.error(data.data);
-					else
-						console.log('服务器数据错误,请联系客服!');
+					if(settings.error) {
+						settings.error(data);
+					}
+					else{
+						console.log(data.msg);
+					}
 				}
 			}else{
 				if(settings.error) settings.error();
 				else 
-					console.log('无数据,请联系客服!');
+					console.log('no data');
 			}
 		  },
 		  error:function(){

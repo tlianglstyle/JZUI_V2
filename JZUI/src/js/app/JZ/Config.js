@@ -9,7 +9,7 @@ exports.AjaxUrl = {
 	JZ_Dictionary : "JZ_Dictionary?"
 };
 exports.AjaxUrlValueJsonP = {
-	"Tliangl_DemoPageDataJsonP?" : "http://tliangl.com/service/api.ashx?action=GetBlogs",
+	"Tliangl_DemoPageDataJsonP?" : "http://tliangl.com/service/api.ashx?action=GetBlogs2",
 	"JZ_Dictionary" : "/cluemgr/query/dic"
 };
 

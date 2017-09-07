@@ -3582,7 +3582,7 @@ body.rtls.top-navigation .footer.fixed {
 }
 
 .page-tabs a.active {
-    /* color: #ffffff; */
+    color: #39a1bb;
     /* border-top-color: #39a1bb; */
     bb; */
     border-top: 2px solid #39a1bb;
@@ -4213,7 +4213,12 @@ body.skin-3 {
 
 @media only screen and (-webkit-min-device-pixel-ratio : 2){
     #content-main {
-        -webkit-overflow-scrolling: touch;
+    /* overflow-x: auto; */
+    /* overflow-y: auto; */
+    -webkit-overflow-scrolling: touch;
+    }
+    #content-main iframe{
+        width:100%;height:100%;
     }
 }
 

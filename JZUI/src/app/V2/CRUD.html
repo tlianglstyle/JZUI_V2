@@ -17,20 +17,20 @@
 			</div>
 			</div>
 			<div class="box-body">
-				<form id="filter_article"  method="post"> 
+				<form method="post" id="form_article"> 
 					<div class="row">
 						<div class="col-sm-6 col-xs-12">
 							<div class="row">
 								<div class="form-group col-xs-6">
 									<div class="input-group">
-										<div class="input-group-addon">姓名</div>
-										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+										<div class="input-group-addon">标题</div>
+										<input name="filter_article.name" v-model="filter_article.name" placeholder="请输入标题" data-rule-required="true" type="text" class="form-control" />
 									</div>
 								</div>
 								<div class="form-group col-xs-6">
 									<div class="input-group">
-										<div class="input-group-addon">姓名</div>
-										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+										<div class="input-group-addon">点击数</div>
+										<input name="filter_article.clicks" v-model="filter_article.clicks" placeholder="请输入点击数" data-rule-required="true" type="text" class="form-control" />
 									</div>
 								</div>
 							</div>
@@ -39,15 +39,26 @@
 							<div class="row">
 								<div class="form-group col-xs-6">
 									<div class="input-group">
-										<div class="input-group-addon">姓名</div>
-										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+										<div class="input-group-addon">日期</div>
+										<input name="filter_article.recorddate" v-model="filter_article.recorddate" placeholder="请输入地址" data-rule-required="true" type="text" class="Wdate-no-border form-control" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'%y-%M-%d'})" />
 									</div>
 								</div>
 								<div class="form-group col-xs-6">
 									<div class="input-group">
-										<div class="input-group-addon">姓名</div>
-										<input name="username" placeholder="请输入姓名" data-rule-required="true" type="text" class="form-control" />
+										<div class="input-group-addon">状态</div>
+										<select name="filter_article.status" v-model="filter_article.status" data-rule-required="true" type="text" class="form-control">
+											<option value="0">开启</option>
+											<option value="1">关闭</option>
+										</select>
 									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xs-12">
+							<div class="row">
+								<div class="form-group col-sm-1">
+									<button type="button" class="btn btn-primary btn-sm" @click='search_article()'>查询</button>
+									<button type="button" class="btn btn-primary btn-sm" @click='filter_article={};'>清空</button>
 								</div>
 							</div>
 						</div>
@@ -58,7 +69,7 @@
 		<div class="box box-default">
 			<div class="box-header">
 			<h3 class="box-title">结果
-				<button type="button" class="btn btn-primary btn-xs" v-on:click='add_article()'>添加</button>
+				<button type="button" class="btn btn-primary btn-xs" @click='add_article()'>添加</button>
 				<button type="button" class="btn btn-primary btn-xs pull-right">导出</button> 
 			</h3>
 			<div class="box-tools pull-right">
@@ -84,7 +95,7 @@
 								<td><input type="checkbox" :value="item.id" v-model="ArticleListSelects" /></td>
 								<td>{{item.vueIndex}}</td>
 								<td>
-									<button type="button" class="btn btn-warning btn-xs" v-on:click="edit_article(item)">修改</button>
+									<button type="button" class="btn btn-warning btn-xs" @click="edit_article(item)">修改</button>
 								</td>
 								<td>{{ item.name }}</td>
 								<td>{{ item.clicks }}</td>
@@ -179,15 +190,22 @@ vm = new JZ.Vue({
 		}
 	},
 	data:{
-		detail_article:{}
+		filter_article:{//筛选
+			name:'',
+			clicks:'',
+			recorddate:'',
+			status:0
+		},
+		detail_article:{}//添加信息、编辑信息
 	},
 	filter:function(){
 		
 	},
 	methods:{
 		//搜索
-		search:function(){
-			var params = '&'+$('#filter_article').serialize();
+		search_article:function(){
+			var form = $('#form_article')
+			var params = '&' + form.serialize();
 			vm.tables.article.setUrl(ajaxUrls.article.List + params);
 			vm.tables.article.reload();
 		},
@@ -211,7 +229,7 @@ vm = new JZ.Vue({
 		}
 	}
 });
-vm.search();
+vm.search_article();
 </script>
 @@include('foot.inc')
   </body>

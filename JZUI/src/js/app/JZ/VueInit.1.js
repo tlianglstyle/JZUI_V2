@@ -22,7 +22,7 @@ var TableGolbal = function(opts){
 			relative:true,	//(可选)是否设置请求相对父路径
 			autoRequest:true,  //自动请求
 			jsonp:false,		//(可选)使用异步数据接口
-		    dataSource:'',	//(可选)表格的数据源集合标识,默认值为(pageBean.recordList)
+		    dataSource:'',	//(可选)表格的数据源集合标识,默认值为(pageInfo.resultList)
 			el_pager:'',		//(分页)(必需)分页容器
 			pageNum:1,		//(分页)(可选)初始页码
 			limit:10,		//(分页)(可选)每页条数
@@ -121,12 +121,11 @@ var TableGolbal = function(opts){
 	   				if(data[settings.dataSource]!=undefined)
 	   					data = data[settings.dataSource];
 	   				else
-	   					data = data.pageBean.recordList;
+	   					data = data.pageInfo.resultList;
 	   				_object.total = data.length;
 	   			}else{
-					   console.log(data);
-	   				_object.total=data.pageBean.totalRecordCount;
-	   				data = data.pageBean.recordList;
+	   				_object.total=data.pageInfo.totalNum;
+	   				data = data.pageInfo.resultList;
 	   			} 
 	   			
 		   		if(data.length==0){
@@ -230,7 +229,7 @@ var TableConfig = function(opts){
 		    selectRows:true,//点击行选中
 		    dataCheckesCallBack:function(){},
 			//relative:true,	//(可选)是否设置请求相对父路径
-			//dataSource:'',	//(可选)表格的数据源集合标识,默认值为(pageBean.recordList)
+			//dataSource:'',	//(可选)表格的数据源集合标识,默认值为(pageInfo.resultList)
 			//el_pager:'',	//(分页)(必需)分页容器
 			limit:undefined,//(分页)(可选)每页条数
 			//page:true		//(分页)(不需)是否分页

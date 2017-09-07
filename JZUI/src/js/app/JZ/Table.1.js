@@ -182,11 +182,11 @@ exports.Table = function(opts){
 	   				if(data[settings.dataSource]!=undefined)
 	   					data = data[settings.dataSource];
 	   				else
-	   					data = data.pageBean.recordList;
+	   					data = data.pageInfo.resultList;
 	   				_object.total = data.length; 
 	   			}else{
-	   				_object.total=data.pageBean.totalRecordCount;
-	   				data = data.pageBean.recordList;
+	   				_object.total=data.pageInfo.totalNum;
+	   				data = data.pageInfo.resultList;
 	   			}
 	   			if(data.length==0){
 	    	   	    		if(_object.page && !_object.loadPage) _object.clearPage();
