@@ -1266,6 +1266,7 @@ a:focus {
   box-shadow: none;
   border-color: #dfdfdf;
   font-size: 12px;
+  height: 30px;
 }
 .form-control::-moz-placeholder,
 .form-control:-ms-input-placeholder,
@@ -1278,8 +1279,11 @@ a:focus {
   -moz-appearance: none;
   appearance: none;
 }
-.form-group {
+form[validate-form] .form-group {
   margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 10px;
 }
 .form-group.has-success label {
   color: #00a65a;
@@ -1318,9 +1322,15 @@ a:focus {
 .input-group .input-group-addon {
   border-radius: 2px;
   min-width: 80px;
-  border-color: #dfdfdf;
-  background-color: #f7f7f7;
+  color: #696969;
+  border-color: transparent;
+  background-color: transparent;
   font-size: 12px;
+  text-align: right;
+}
+.input-group .form-control {
+  background-color: #f2f2f2;
+  border-color: #f2f2f2;
 }
 .input-group select {
   -webkit-appearance: none;
@@ -1765,7 +1775,7 @@ a:focus {
 .box-header > .glyphicon,
 .box-header > .ion,
 .box-header .box-title {
-  font-size: 18px;
+  font-size: 16px;
   margin: 0;
   margin-right: 60px;
   line-height: 1;
@@ -1818,7 +1828,7 @@ a:focus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  padding: 10px;
+  padding: 0 10px 10px;
 }
 .no-header .box-body {
   border-top-right-radius: 3px;
@@ -2262,15 +2272,16 @@ a:focus {
   display: block;
 }
 .btn-default {
-  background-color: #f4f4f4;
+  background-color: #e6e6e6;
   color: #444;
-  border-color: #ddd;
+  border-color: #e6e6e6;
 }
 .btn-default:hover,
 .btn-default:active,
 .btn-default:focus,
 .btn-default.hover {
-  background-color: #e7e7e7;
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
 }
 .btn-primary {
   background-color: #00acd6;
@@ -2517,7 +2528,7 @@ a:focus {
   border-top-left-radius: 3px;
 }
 .nav-tabs-custom > .nav-tabs > li {
-  border-top: 3px solid transparent;
+  border-top: 2px solid transparent;
   margin-bottom: -2px;
   margin-right: 5px;
 }
@@ -3024,9 +3035,20 @@ table.text-center th {
 }
 .modal-header {
   border-bottom-color: #f4f4f4;
+  background: #0E2E36;
+  color: #fff;
+  text-align: center;
+}
+.modal-header button.close {
+  color: #fff;
 }
 .modal-footer {
+  text-align: center;
   border-top-color: #f4f4f4;
+}
+.modal-footer button {
+  min-width: 100px;
+  margin: 0px 10px;
 }
 .modal-primary .modal-header,
 .modal-primary .modal-footer {

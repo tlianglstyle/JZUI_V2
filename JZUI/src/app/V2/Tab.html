@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>index</title>
+    @@include('../inc/head.inc')
+	@@include('head.inc')
+  </head>
+  <body>
+	  <div id="page-wrapper"> 
+		<div class="box box-default">
+			<div class="box-header">
+			<h3 class="box-title">筛选</h3>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+			</div>
+			</div>
+			<div class="box-body">
+				<form method="post" v-if="tabIndex==0"> 
+					<div class="row">
+						<div class="col-sm-6 col-xs-12">
+							<div class="row">
+								<div class="form-group col-xs-6">
+									<div class="input-group">
+										<div class="input-group-addon">标题1</div>
+										<input name="filter_1.name" v-model="filter_1.name" placeholder="请输入标题" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="form-group col-xs-6">
+									<div class="input-group">
+										<div class="input-group-addon">点击数1</div>
+										<input name="filter_1.clicks" v-model="filter_1.clicks" placeholder="请输入点击数" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6 col-xs-12">
+							<div class="row">
+								<div class="form-group col-xs-6">
+									<div class="input-group">
+										<div class="input-group-addon">日期1</div>
+										<input name="filter_1.recorddate" v-model="filter_1.recorddate" placeholder="请输入地址" data-rule-required="true" type="text" class="Wdate-no-border form-control" readonly="readonly" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'%y-%M-%d'})" />
+									</div>
+								</div>
+								<div class="form-group col-xs-6">
+									<div class="input-group">
+										<div class="input-group-addon">状态1</div>
+										<select name="filter_1.status" v-model="filter_1.status" data-rule-required="true" type="text" class="form-control">
+											<option value="0">开启</option>
+											<option value="1">关闭</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<div class="row">
+								<div class="form-group col-sm-12">
+									<button type="button" class="btn btn-primary btn-sm" @click='search_1()'>查询</button>
+									<button type="button" class="btn btn-primary btn-sm" @click='filter_1={};'>清空</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<form method="post" v-if="tabIndex==1"> 
+					<div class="row">
+						<div class="col-sm-6 col-xs-12">
+							<div class="row">
+								<div class="form-group col-xs-6">
+									<div class="input-group">
+										<div class="input-group-addon">标题2</div>
+										<input name="filter_2.name" v-model="filter_2.name" placeholder="请输入标题" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+								<div class="form-group col-xs-6">
+									<div class="input-group">
+										<div class="input-group-addon">点击数2</div>
+										<input name="filter_2.clicks" v-model="filter_2.clicks" placeholder="请输入点击数" data-rule-required="true" type="text" class="form-control" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-12 col-xs-12">
+							<div class="row">
+								<div class="form-group col-sm-12">
+									<button type="button" class="btn btn-primary btn-sm" @click='search_2()'>查询</button>
+									<button type="button" class="btn btn-primary btn-sm" @click='filter_2={};'>清空</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="box box-default">
+			<div class="box-header">
+			<h3 class="box-title">结果
+				<button type="button" class="btn btn-primary btn-xs pull-right">导出</button> 
+			</h3>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+				<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+			</div>
+			</div>
+			<div class="box-body">
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs" id="j_tab">
+						<li class="active"><a href="#p1" data-toggle="tab">分类1<h6 class="text-danger">[待审核]</h6></a>
+						</li>
+						<li><a href="#p2" data-toggle="tab">分类2<h6 class="text-success">[已审核]</h6></a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<!-- 分类1待审核 -->
+						<div id="p1" class="tab-pane fade in active">
+						<br>
+								<div class="table-responsive">
+									<table width="100%" class="table table-striped table-bordered table-hover" id="vue-table1">
+									<thead>
+										<tr>
+										<th>序号</th>
+										<th style="min-width: 80px;">操作</th>
+										<th>标题</th>
+										<th>描述</th>
+										<th>状态</th>
+										<th>提交时间</th>
+										</tr>
+									</thead>
+									<tbody>
+									<!-- 节点遍历 -->
+										<tr v-for="item in DataList1">
+											<td>{{item.vueIndex}}</td>
+											<td>
+												<button type="button" class="btn btn-warning btn-xs">无</button>
+												<button type="button" class="btn btn-primary btn-xs">打开</button>
+											</td>
+											<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
+											<td>{{ item.title }}</td>
+											<td>{{ false | switch_status }}</td>
+											<td>{{ false | timefomart}}</td>
+										</tr>
+									</tbody>
+								</table>
+						</div>
+						<ul id="pager-1" class="pagination pull-right"></ul>
+						</div>
+						<!-- 分类2已审核 -->
+						<div id="p2" class="tab-pane fade">
+						<br>
+							<div class="table-responsive">
+								<table width="100%" class="table table-striped table-bordered table-hover" id="vue-table2">
+								<thead>
+									<tr>
+									<th>序号</th>
+									<th>操作</th>
+										<th>标题</th>
+										<th>描述</th>
+										<th>状态</th>
+										<th>提交时间</th>
+									</tr>
+								</thead>
+								<tbody>
+								<!-- 节点遍历 -->
+									<tr v-for="item in DataList2">
+										<td>{{item.vueIndex}}</td>
+										<td> 
+										</td>
+										<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
+										<td>{{ item.title }}</td>
+										<td>{{ false | switch_status }}</td>
+										<td>{{ false | timefomart}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<ul id="pager-2" class="pagination pull-right"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<script>
+var ajaxUrls = {
+	article:{
+		List:JZ.AjaxUrl.DemoPageData.urlRandom()
+	}
+};
+vm = new JZ.Vue({ 
+	tables:{//初始化表格
+		table1:{
+			data:'DataList1',				//(必需)数据集合标识
+			url:ajaxUrls.article.List,//(必需)数据接口地址
+			el_pager:'#pager-1',			//(分页功能必需的参数)分页容器
+			limit:5,					//(分页功能可选的参数)每页条数,默认10
+			resizable:true,//可拖拽列 
+			singleLine:true,//禁止内容换行	
+			autoRequest:false//默认不请求数据
+		},
+		table2:{
+			data:'DataList2',				//(必需)数据集合标识
+			url:ajaxUrls.article.List,//(必需)数据接口地址
+			el_pager:'#pager-2',			//(分页功能必需的参数)分页容器
+			limit:5,					//(分页功能可选的参数)每页条数,默认10
+			resizable:true,//可拖拽列 
+			singleLine:true,//禁止内容换行	
+			autoRequest:false//默认不请求数据
+		}
+	},
+	data:{
+		tabIndex:0,//当前选项卡
+		filter_1:{//筛选1
+			name:'',
+			clicks:'',
+			recorddate:'',
+			status:0
+		},
+		filter_2:{//筛选2
+			name:'',
+			clicks:'',
+			recorddate:'',
+			status:0
+		}
+	},
+	filter:function(){
+		Vue.filter('switch_status', function () {
+			if(this.item.isvalid%2==0)
+				return '禁用';
+			return '启用';
+		});
+		Vue.filter('timefomart', function () {
+			return this.item.recorddate.FormatDate();
+		});
+	},
+	methods:{
+		search_1:function(){
+			var form = $('#form_search_1')
+			var params = '?' + form.serialize();
+			vm.tables.table1.setUrl(ajaxUrls.article.List + params);
+			vm.tables.table1.reload();
+		},
+		search_2:function(){
+			var form = $('#form_search_2')
+			var params = '?' + form.serialize();
+			vm.tables.table2.setUrl(ajaxUrls.article.List + params);
+			vm.tables.table2.reload();
+		}
+	}
+});
+$('#j_tab li').click(function(){
+	vm.tabIndex = $('#j_tab li').index($(this));
+	setTimeout(function(){
+		vm['search_' + (vm.tabIndex + 1) ]();
+	},100);
+}).eq(vm.tabIndex).click();
+</script>
+@@include('foot.inc')
+  </body>
+</html>
+ 

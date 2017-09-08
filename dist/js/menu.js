@@ -21,6 +21,20 @@ var tree_demoData = [
                 "id":3,
                 "state":"open",
                 "text":"增删改查模板"
+            },
+            {
+                "attributes":
+                {
+                    "leaf":true,
+                    "parentId":1,
+                    "url":"JZUI/dist/app/V2/Tab.html"
+                },
+                "checked":false,
+                "children":[],
+                "iconCls":"news_list",
+                "id":3,
+                "state":"open",
+                "text":"选项卡"
             }
         ],
         "iconCls":"news_manage",

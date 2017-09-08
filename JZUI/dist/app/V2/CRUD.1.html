@@ -68,6 +68,7 @@
   </head>
   <body>
 	  <div id="page-wrapper"> 
+		<h6>JZ.Vue</h6>
 		<div class="box box-default">
 			<div class="box-header">
 			<h3 class="box-title">筛选</h3>
@@ -113,64 +114,10 @@
 									</div>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div class="col-sm-6 col-xs-12">
 							<div class="row">
-								<div class="form-group col-xs-6">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-								<div class="form-group col-xs-6">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-							</div>
-						</div>	
-						<div class="col-sm-6 col-xs-12">
-							<div class="row">
-								<div class="form-group col-xs-6">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-								<div class="form-group col-xs-6">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-							</div>
-						</div>	
-						<div class="col-sm-12 col-xs-12">
-							<div class="row">
-								<div class="form-group col-sm-4 col-xs-12">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-								<div class="form-group col-sm-4 col-xs-12">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-								<div class="form-group col-sm-4 col-xs-12">
-									<div class="input-group">
-										<div class="input-group-addon">测试列</div>
-										<input placeholder="请输入测试列" data-rule-required="true" type="text" class="form-control" />
-									</div>
-								</div>
-							</div>
-						</div>					
-						<div class="col-sm-12 col-xs-12">
-							<div class="row">
-								<div class="form-group col-sm-12">
+								<div class="form-group col-sm-6">
 									<button type="button" class="btn btn-primary btn-sm" @click='search_article()'>查询</button>
 									<button type="button" class="btn btn-primary btn-sm" @click='filter_article={};'>清空</button>
 								</div>
@@ -319,7 +266,7 @@ vm = new JZ.Vue({
 		//搜索
 		search_article:function(){
 			var form = $('#form_search_article')
-			var params = '?' + form.serialize();
+			var params = '&' + form.serialize();
 			vm.tables.article.setUrl(ajaxUrls.article.List + params);
 			vm.tables.article.reload();
 		},

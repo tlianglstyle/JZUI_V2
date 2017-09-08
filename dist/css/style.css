@@ -154,45 +154,7 @@ nav.page-tabs .page-tabs-content {
     padding-bottom: 0;
 }
 
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background: none;
-    border-color: #dddddd #dddddd rgba(0, 0, 0, 0);
-    border-bottom: #f3f3f4;
-    -webkit-border-image: none;
-    -o-border-image: none;
-    border-image: none;
-    border-style: solid;
-    border-width: 1px;
-    color: #555555;
-    cursor: default;
-}
 
-.nav.nav-tabs li {
-    background: none;
-    border: none;
-}
-
-.nav-tabs > li > a {
-    color: #A7B1C2;
-    font-weight: 600;
-    padding: 10px 20px 10px 25px;
-}
-
-.nav-tabs > li > a:hover,
-.nav-tabs > li > a:focus {
-    background-color: #e6e6e6;
-    color: #676a6c;
-}
-
-.ui-tab .tab-content {
-    padding: 20px 0px;
-}
 
 
 /* GLOBAL  */
