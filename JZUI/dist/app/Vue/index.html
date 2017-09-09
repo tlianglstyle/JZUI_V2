@@ -96,18 +96,18 @@
 	                     </thead>
 	                     <tbody>
 	                    <!-- 节点遍历 -->
-											<tr v-for="item in UserList1">
-												<td>{{item.vueIndex}}</td>
-												<td>
-													<button type="button" class="btn btn-primary btn-xs" v-on:click="edit(item,$event)">修改</button>
-													<button type="button" class="btn btn-warning btn-xs" v-on:click="del(item,$event)">删除</button>
-												</td>
-												<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
-												<td>{{ item.title }}</td>
-												<td>{{ false | switch_1}}</td>
-												<td>{{ item.recorddate }}</td>
-											</tr>
-										</tbody>
+							<tr v-for="item in UserList1">
+								<td>{{item.vueIndex}}</td>
+								<td>
+									<button type="button" class="btn btn-primary btn-xs" @click="edit(item,$event)">修改</button>
+									<button type="button" class="btn btn-warning btn-xs" @click="del(item,$event)">删除</button>
+								</td>
+								<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
+								<td>{{ item.title }}</td>
+								<td>{{ false | switch_1}}</td>
+								<td>{{ item.recorddate }}</td>
+							</tr>
+						</tbody>
 	                 </table>
 	                 </div>
 					</div>		  
@@ -133,8 +133,8 @@
 											<tr v-for="item in UserList2">
 												<td>{{item.vueIndex}}</td>
 												<td>
-													<button type="button" class="btn btn-primary btn-xs" v-on:click="edit(item,$event)">修改</button>
-													<button type="button" class="btn btn-warning btn-xs" v-on:click="del(item,$event)">删除</button>
+													<button type="button" class="btn btn-primary btn-xs" @click="edit(item,$event)">修改</button>
+													<button type="button" class="btn btn-warning btn-xs" @click="del(item,$event)">删除</button>
 												</td>
 												<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
 												<td>{{ item.title }}</td>
@@ -172,8 +172,8 @@
 												<td><input type="checkbox" :value="item.id" v-model="UserList3Selects" /></td>
 												<td>{{item.vueIndex}}</td>
 												<td>
-													<button type="button" class="btn btn-primary btn-xs" v-on:click="edit(item,$event)">修改</button>
-													<button type="button" class="btn btn-warning btn-xs" v-on:click="del(item,$event)">删除</button>
+													<button type="button" class="btn btn-primary btn-xs" @click="edit(item,$event)">修改</button>
+													<button type="button" class="btn btn-warning btn-xs" @click="del(item,$event)">删除</button>
 												</td>
 												<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
 												<td>{{ item.title }}</td>
@@ -212,8 +212,8 @@
 												<td><input type="checkbox" :value="item.id" v-model="UserList4Selects" /></td>
 												<td>{{item.vueIndex}}</td>
 												<td>
-													<button type="button" class="btn btn-primary btn-xs" v-on:click="edit(item,$event)">修改</button>
-													<button type="button" class="btn btn-warning btn-xs" v-on:click="del(item,$event)">删除</button>
+													<button type="button" class="btn btn-primary btn-xs" @click="edit(item,$event)">修改</button>
+													<button type="button" class="btn btn-warning btn-xs" @click="del(item,$event)">删除</button>
 												</td>
 												<td><a target="_blank" href="http://tliangl.com/article{{ item.id }}.aspx">{{ item.name }}</a></td>
 												<td>{{ item.title }}</td>
@@ -548,6 +548,60 @@
 		          <ul id="vue-pager7" class="pagination pull-right"></ul>
 					</div>		  
 			  </div>
+				<div class="panel panel-default">
+					<div class="panel-heading"><b>每行的子表格</b>
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table width="100%" class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+								<th>序号</th>
+	                          	<th>操作</th>
+								<th>标题</th>
+								<th>描述</th>
+								<th>状态</th>
+								<th>提交时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<template v-for="item in UserList8">
+									<tr>	
+										<td>{{item.vueIndex}}</td>
+										<td>
+											<button type="button" class="btn btn-primary btn-xs" @click="item.showChildRow = !item.showChildRow">{{ item.showChildRow ? '收起' : '查看' }}详情(子集合)</button>
+										</td>
+										<td>{{ item.name }}</td>
+										<td>{{ item.clicks }}</td>
+										<td>{{ false | switch_1}}</td>
+										<td>{{ item.recorddate }}</td>			
+									</tr>
+									<tr v-if="item.showChildRow">
+										<td colspan="6">
+											<h6>我是展开的子表</h6>
+											<table width="100%" class="table table-striped table-bordered table-hover">
+												<thead>
+													<tr>
+														<th>标题</th>
+														<th>描述</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>{{ '随机1' + item.name }}</td>
+														<td>{{ '随机1' + item.clicks }}</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
+									</tr>
+								</template>
+							</tbody>
+						</table>
+					</div>
+					<ul id="vue-pager8" class="pagination pull-right"></ul>
+						</div>		  
+				</div>
 		  </div>
 		
 		  <div class="col-sm-6">  
@@ -610,6 +664,14 @@ vm = new JZ.Vue({
 				isAdmin:0,//1:不保存cookie，2:保存ignoreColumns
 				pageKey:'${role}'//管理员模式用于保存当前页面ignoreColumns
 			}
+		},
+		table8:{
+			data:'UserList8',
+			url:JZ.AjaxUrl.DemoPageData.urlRandom(),
+			el_pager:'#vue-pager8',
+			limit:5,
+			resizable:true,//可拖拽列 
+			singleLine:true//禁止内容换行
 		}
 	},
 	data: {},

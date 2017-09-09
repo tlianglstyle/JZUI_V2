@@ -136,6 +136,7 @@ var TableGolbal = function(opts){
 		   		}else{
 		    	   	    	for(var i=0;i<data.length;i++){
 		    	   	    		data[i].vueIndex=(i+1)+_object.limit*(_object.pageNum-1);	
+								data[i].showChildRow = false;
 		    	   	    	}
 			   	    	if(_object.page && !_object.loadPage) _object.initPage();
 	    				settings.onRequestData(data);
@@ -434,7 +435,7 @@ var VueInit = function(opts){
 	function setColumns(obj,showColumns,hideColumns){
 		var table = obj.el_data;
 		var thead = table.find('thead tr');
-		var tbody = table.find('tr[v-for]');
+		var tbody = table.find('[v-for$=' + obj.data + ']');
 		var ths = thead.children('th');
 		var tds = tbody.children('td');
 		var new_thead = thead.clone().html('');
@@ -509,7 +510,7 @@ var VueInit = function(opts){
 	for(var k in tableQueue){
 		(function(key){ 
 			var obj = tableQueue[key];
-			obj.el_data = $('body').find('tr[v-for$=' + obj.data + ']').closest('table');
+			obj.el_data = $('body').find('[v-for$=' + obj.data + ']').closest('table');
 			if(obj.editColumns != null)
 				checkColumns(obj);
 			

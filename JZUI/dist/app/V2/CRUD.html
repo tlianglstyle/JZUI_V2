@@ -233,7 +233,7 @@
 							<div class="row">
 								<div class="form-group col-sm-6 col-xs-6">
 									<div class="input-group">
-										<div class="input-group-addon">标题</div>
+										<div class="input-group-addon"><sub class="text-danger">*</sub>标题</div>
 										<input name="name" v-model="detail_article.name" placeholder="请输入标题" data-rule-required="true" type="text" class="form-control" />
 									</div>
 								</div>
@@ -336,7 +336,7 @@ vm = new JZ.Vue({
 		},
 		//编辑
 		edit_article:function(item){
-			vm.detail_article = item;
+			vm.detail_article = JZ.Utils.Clone(item);
 			form.setUrl(ajaxUrls.article.Update);
 			$('label.form-require-error').remove();//清空验证信息
 			$('#modal_edit_article').modal('show');

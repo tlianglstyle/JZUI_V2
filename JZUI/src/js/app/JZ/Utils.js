@@ -1,4 +1,7 @@
 module.exports = {
+	Clone : function(object){
+		return JSON.parse(JSON.stringify(object));
+	},
 	Cookie : {
 		get(c_name){
 			if (document.cookie.length>0)
