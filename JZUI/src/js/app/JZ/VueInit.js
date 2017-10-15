@@ -109,7 +109,7 @@ var TableGolbal = function(opts){
 			return;
 		}
 		var splits = (_object.url.indexOf('?')>0?'&':'?'); 
-		var url= _object.url + splits + 'pageNum='+_object.pageNum+'&pageSize='+_object.limit; 
+		var url= _object.url + splits + 'pageNo='+_object.pageNum+'&pageSize='+_object.limit; 
 		console.log(url);
 		Ajax.Ajax({
 	  	 	url:url,
@@ -290,6 +290,8 @@ var VueInit = function(opts){
 	settings.filter();
 	//添加配置出口
 	var _tables = new Object();
+	//角色：用户保存管理员设置的用户角色配置
+	var roleId = 0;
 	for(var k in settings.tables){
 		//表格标识，用于同页面多表格的列编辑、列排序
 		settings.tables[k].tableName = k;
@@ -375,7 +377,7 @@ var VueInit = function(opts){
 					fun_end();
 				}else{
 					Ajax.Ajax({
-						url:'save?pageKey='+obj.editColumns.pageKey+'&ignoreColumns='+result.join(','),
+						url:'/menu/column/add?roleId='+roleId+'&pageKey='+obj.editColumns.pageKey+'&ignoreColumns='+result.join(','),
 						success:function(){
 							window.location.reload();
 						}
@@ -464,8 +466,8 @@ var VueInit = function(opts){
 	function checkColumns(obj){
 		//管理员禁用的列
 		let hideColumns = [];
-		if(obj.editColumns.ignoreColumns==""){
-			hideColumns = null;
+		if(typeof obj.editColumns.ignoreColumns=='undefined' ||obj.editColumns.ignoreColumns==""){
+			hideColumns = null; 
 		}else{
 			let tableList = obj.editColumns.ignoreColumns.split('-');
 			if(tableList.length==1){//5,2,4
@@ -501,8 +503,10 @@ var VueInit = function(opts){
 				setColumns(obj,null,hideColumns);//无设置
 			}
 		}else{
+			roleId = obj.editColumns.roleId;
 			//管理员模式
 			columnsTool(obj,null,hideColumns,true);//设置工具栏,按原始排列,禁止拖动,保存禁止显示项
+			setColumns(obj,null,hideColumns);//无设置
 		}
 		
 	}
