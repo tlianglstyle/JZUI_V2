@@ -1572,7 +1572,7 @@ form[validate-form] .form-group {
   position: relative;
   border-radius: 3px;
   background: #ffffff;
-  border-top: 3px solid #d2d6de;
+  border-top: 1px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -2537,6 +2537,8 @@ form[validate-form] .form-group {
 }
 .nav-tabs-custom > .nav-tabs > li > a {
   color: #444;
+  padding: 5px 15px;
+  font-size: 14px;
   border-radius: 0;
 }
 .nav-tabs-custom > .nav-tabs > li > a.text-muted {

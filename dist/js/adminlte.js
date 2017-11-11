@@ -155,8 +155,8 @@ throw new Error('AdminLTE requires jQuery')
     animationSpeed : 500,
     collapseTrigger: '[data-widget="collapse"]',
     removeTrigger  : '[data-widget="remove"]',
-    collapseIcon   : 'fa-minus',
-    expandIcon     : 'fa-plus',
+    collapseIcon   : 'fa-caret-down',
+    expandIcon     : 'fa-caret-up',
     removeIcon     : 'fa-times'
   }
 
@@ -268,6 +268,8 @@ throw new Error('AdminLTE requires jQuery')
 
       if (!data) {
         var options = $.extend({}, Default, $this.data(), typeof option == 'object' && option)
+        options.collapseIcon = 'fa-caret-down';
+        options.expandIcon = 'fa-caret-up';
         $this.data(DataKey, (data = new BoxWidget($this, options)))
       }
 

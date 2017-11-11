@@ -104,6 +104,20 @@ var tree_demoData = [
         {
             "leaf":false,
             "parentId":0,
+            "url":"JZUI/dist/app/API/index.html"
+        },
+        "checked":false,
+        "children":[],
+        "iconCls":"news_manage",
+        "id":1,
+        "state":"closed",
+        "text":"API"
+    },
+    {
+        "attributes":
+        {
+            "leaf":false,
+            "parentId":0,
             "url":""
         },
         "checked":false,

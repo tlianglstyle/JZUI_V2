@@ -108,8 +108,8 @@ var TableGolbal = function(opts){
 			_object.renderData([]);
 			return;
 		}
-		var splits = (_object.url.indexOf('?')>0?'&':'?'); 
-		var url= _object.url + splits + 'pageNo='+_object.pageNum+'&pageSize='+_object.limit; 
+		var splits = (_object.url.indexOf('?')>0?'&':'?');
+		var url= _object.url + splits + 'pageNum='+_object.pageNum+ '&pageNo='+_object.pageNum+'&pageSize='+_object.limit; 
 		console.log(url);
 		Ajax.Ajax({
 	  	 	url:url,
